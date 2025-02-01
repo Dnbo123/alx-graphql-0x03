@@ -1,5 +1,6 @@
 import React from 'react';
 import type { ReactNode } from 'react';
+import * as Sentry from '@sentry/react';
 
 interface State {
   // Indicates whether an error has been encountered
@@ -27,6 +28,8 @@ interface State {
       super(props);
       this.state = { hasError: false };
     }
+
+    
   
     /**
      * getDerivedStateFromError is a static method that is invoked after an error has been thrown by a descendant component.
@@ -48,7 +51,7 @@ interface State {
      * @param {React.ErrorInfo} errorInfo - The errorInfo object
      */
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-      console.log({ error, errorInfo });
+      console.log({ error, { extra: errorInfo });
     }
   
     /**
